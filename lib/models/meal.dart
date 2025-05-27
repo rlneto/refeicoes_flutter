@@ -1,6 +1,6 @@
-enum Complexity { simple, challenging, hard }
+enum Complexity { simples, desafiante, complexo }
 
-enum Affordability { affordable, pricey, luxurious }
+enum Affordability { barato, caro, extra }
 
 class Meal {
   const Meal({
