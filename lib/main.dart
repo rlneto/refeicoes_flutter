@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
+import 'package:refeicoes_flutter/data/dummy_data.dart';
 import 'package:refeicoes_flutter/screens/categories.dart';
+import 'package:refeicoes_flutter/screens/meals.dart';
 
 final theme = ThemeData(
   colorScheme: ColorScheme.fromSeed(
@@ -20,6 +22,9 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(theme: theme, home: CategoriesScreen());
+    return MaterialApp(
+      theme: theme,
+      home: MealsScreen(title: 'Categoria', meals: dummyMeals),
+    );
   }
 }
