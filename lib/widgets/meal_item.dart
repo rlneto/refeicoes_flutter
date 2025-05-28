@@ -23,7 +23,7 @@ class MealItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.all(8),
+      margin: const EdgeInsets.all(8),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       clipBehavior: Clip.hardEdge,
       elevation: 2,
@@ -58,7 +58,7 @@ class MealItem extends StatelessWidget {
                       textAlign: TextAlign.center,
                       softWrap: true,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
@@ -72,9 +72,9 @@ class MealItem extends StatelessWidget {
                           icon: Icons.schedule,
                           label: '${meal.duration} min',
                         ),
-                        SizedBox(width: 12),
+                        const SizedBox(width: 12),
                         MealItemTrait(icon: Icons.work, label: complexityText),
-                        SizedBox(width: 12),
+                        const SizedBox(width: 12),
                         MealItemTrait(
                           icon: Icons.money,
                           label: affordabilityText,

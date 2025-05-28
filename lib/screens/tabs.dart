@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:refeicoes_flutter/models/meal.dart';
 import 'package:refeicoes_flutter/screens/categories.dart';
 import 'package:refeicoes_flutter/screens/meals.dart';
 
@@ -13,6 +14,21 @@ class TabsScreen extends StatefulWidget {
 
 class _TabsScreenState extends State<TabsScreen> {
   int _selectedPageIndex = 0;
+  final List<Meal> _favoriteMeals = [];
+
+  void _toggleMealFavoriteStatus(Meal meal) {
+    final isExisting = _favoriteMeals.contains(meal);
+
+    if (isExisting) {
+      setState(() {
+        _favoriteMeals.remove(meal);
+      });
+    } else {
+      setState(() {
+        _favoriteMeals.add(meal);
+      });
+    }
+  }
 
   void _selectPage(int index) {
     setState(() {
@@ -22,18 +38,23 @@ class _TabsScreenState extends State<TabsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Widget activePage = CategoriesScreen();
+    Widget activePage = CategoriesScreen(
+      onToggleFavorite: _toggleMealFavoriteStatus,
+    );
     var activePageTitle = 'Categorias';
 
     if (_selectedPageIndex == 1) {
-      activePage = MealsScreen(meals: []);
+      activePage = MealsScreen(
+        meals: _favoriteMeals,
+        onToggleFavorite: _toggleMealFavoriteStatus,
+      );
       activePageTitle = 'Favoritos';
     }
     return Scaffold(
       appBar: AppBar(title: Text(activePageTitle)),
       body: activePage,
       bottomNavigationBar: BottomNavigationBar(
-        items: [
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.set_meal),
             label: "Categorias",
