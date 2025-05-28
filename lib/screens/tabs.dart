@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:refeicoes_flutter/models/meal.dart';
 import 'package:refeicoes_flutter/screens/categories.dart';
+import 'package:refeicoes_flutter/screens/filters.dart';
+import 'package:refeicoes_flutter/screens/main_drawer.dart';
 import 'package:refeicoes_flutter/screens/meals.dart';
 
 class TabsScreen extends StatefulWidget {
@@ -45,6 +47,15 @@ class _TabsScreenState extends State<TabsScreen> {
     });
   }
 
+  void _setScreen(String identifier) {
+    Navigator.of(context).pop();
+    if (identifier == 'filters') {
+      Navigator.of(
+        context,
+      ).pushReplacement(MaterialPageRoute(builder: (ctx) => FiltersScreen()));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget activePage = CategoriesScreen(
@@ -61,6 +72,7 @@ class _TabsScreenState extends State<TabsScreen> {
     }
     return Scaffold(
       appBar: AppBar(title: Text(activePageTitle)),
+      drawer: MainDrawer(onSelectScreen: _setScreen),
       body: activePage,
       bottomNavigationBar: BottomNavigationBar(
         items: const [
